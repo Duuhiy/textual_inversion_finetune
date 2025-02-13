@@ -155,6 +155,7 @@ class DDIMSampler(object):
                                               unconditional_guidance_scale=unconditional_guidance_scale,
                                               unconditional_conditioning=unconditional_conditioning)
             else:
+                model.embedding_manager.string_to_param_dict["*"].requires_grad = True
                 outs = self.p_sample_ddim(img, cond, ts, index=index, use_original_steps=ddim_use_original_steps,
                                           quantize_denoised=quantize_denoised, temperature=temperature,
                                           noise_dropout=noise_dropout, score_corrector=score_corrector,
